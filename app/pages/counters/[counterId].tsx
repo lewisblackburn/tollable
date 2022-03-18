@@ -1,5 +1,6 @@
 import CounterTable from "app/core/components/CounterTable"
 import TableHeader from "app/core/components/TableHeader"
+import TableSkeleton from "app/core/components/TableSkeleton"
 import Layout from "app/core/layouts/Layout"
 import { CounterForm, FORM_ERROR } from "app/counters/components/CounterForm"
 import deleteCounter from "app/counters/mutations/deleteCounter"
@@ -11,7 +12,6 @@ import { Suspense } from "react"
 export const Counter = () => {
   const router = useRouter()
   const counterId = useParam("counterId", "string")
-  const [deleteCounterMutation] = useMutation(deleteCounter)
   // This ensures the query never refreshes and overwrites the form data while the user is editing.
   const [counter, { setQueryData }] = useQuery(
     getCounter,
@@ -26,7 +26,6 @@ export const Counter = () => {
         <title>Counter {counter.id}</title>
       </Head>
 
-      <TableHeader title={counter.name} isPaidAccount={false} />
       <CounterTable counters={[counter]} />
 
       <CounterForm
@@ -53,28 +52,18 @@ export const Counter = () => {
           }
         }}
       />
-
-      <button
-        type="button"
-        onClick={async () => {
-          if (window.confirm("This will be deleted")) {
-            await deleteCounterMutation({ id: counter.id })
-            router.push(Routes.CountersPage())
-          }
-        }}
-        style={{ marginLeft: "0.5rem" }}
-      >
-        Delete
-      </button>
     </>
   )
 }
 
 const ShowCounterPage: BlitzPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Counter />
-    </Suspense>
+    <>
+      <TableHeader title="Counter" isPaidAccount={false} />
+      <Suspense fallback={<TableSkeleton rows={1} />}>
+        <Counter />
+      </Suspense>
+    </>
   )
 }
 

@@ -10,7 +10,7 @@ const handler: BlitzApiHandler = async (req, res) => {
 
     if (authToken) {
       const counter = await db.counter.update({
-        where: { id: authToken.toString() },
+        where: { uuid: authToken.toString() },
         data: { value: { increment: 1 } },
       })
 

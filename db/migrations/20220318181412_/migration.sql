@@ -44,6 +44,7 @@ CREATE TABLE "Token" (
 -- CreateTable
 CREATE TABLE "Counter" (
     "id" TEXT NOT NULL,
+    "uuid" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
@@ -61,6 +62,12 @@ CREATE UNIQUE INDEX "Session_handle_key" ON "Session"("handle");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Token_hashedToken_type_key" ON "Token"("hashedToken", "type");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Counter_uuid_key" ON "Counter"("uuid");
+
+-- CreateIndex
+CREATE INDEX "Counter_uuid_idx" ON "Counter"("uuid");
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;

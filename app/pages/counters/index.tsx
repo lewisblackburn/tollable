@@ -5,6 +5,7 @@ import getCounters from "app/counters/queries/getCounters"
 import TableHeader from "app/core/components/TableHeader"
 import CounterTable from "app/core/components/CounterTable"
 import TableSkeleton from "app/core/components/TableSkeleton"
+import { Box, Button } from "@chakra-ui/react"
 
 export const CountersList = () => {
   const router = useRouter()
@@ -13,11 +14,7 @@ export const CountersList = () => {
     take: 100,
   })
 
-  return (
-    <div>
-      <CounterTable counters={counters} />
-    </div>
-  )
+  return <CounterTable counters={counters} />
 }
 
 const CountersPage: BlitzPage = () => {
@@ -31,11 +28,14 @@ const CountersPage: BlitzPage = () => {
       <Suspense
         fallback={
           <>
-            <TableSkeleton />
+            <TableSkeleton rows={5} />
           </>
         }
       >
         <CountersList />
+        <Link href={Routes.NewCounterPage()}>
+          <Button background="gray.200">New</Button>
+        </Link>
       </Suspense>
     </>
   )
