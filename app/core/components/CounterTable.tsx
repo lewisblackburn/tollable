@@ -39,22 +39,7 @@ const CounterTable = ({ counters }) => {
             gridTemplateColumns="2fr 1fr 1fr 1fr 1fr"
             alignItems="center"
           >
-            <Td borderBottom="none">
-              <InputGroup size="md">
-                <Input
-                  pr="4.5rem"
-                  type={show ? "text" : "password"}
-                  placeholder="Enter password"
-                  value={counter.uuid}
-                  readOnly
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? "Hide" : "Show"}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </Td>
+            <Td borderBottom="none">{counter.id}</Td>
             <Td borderBottom="none">{counter.name}</Td>
             <Td borderBottom="none">{counter.value}</Td>
             <Td borderBottom="none">{new Date(counter.updatedAt).toLocaleDateString()}</Td>

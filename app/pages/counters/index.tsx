@@ -6,10 +6,19 @@ import TableHeader from "app/core/components/TableHeader"
 import CounterTable from "app/core/components/CounterTable"
 import TableSkeleton from "app/core/components/TableSkeleton"
 import { Box, Button } from "@chakra-ui/react"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 export const CountersList = () => {
   const router = useRouter()
+  const { user } = useCurrentUser()
   const [{ counters }] = usePaginatedQuery(getCounters, {
+    where: {
+      user: {
+        id: {
+          equals: user?.id,
+        },
+      },
+    },
     orderBy: { id: "desc" },
     take: 100,
   })
