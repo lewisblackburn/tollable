@@ -13,7 +13,7 @@ export default resolver.pipe(
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const counter = await db.counter.create({
       data: {
-        name: name.replaceAll(" ", "-"),
+        name,
         value: 0,
         user: {
           connect: {
