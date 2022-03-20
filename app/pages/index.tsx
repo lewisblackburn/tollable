@@ -1,12 +1,17 @@
-import Layout from "app/core/layouts/Layout"
-import { BlitzPage, Routes } from "blitz"
+import { Button, Flex } from "@chakra-ui/react"
+import { BlitzPage, Link, Routes } from "blitz"
 
 const Home: BlitzPage = () => {
-  return <div className="container">test</div>
+  return (
+    <Flex display="grid" placeItems="center" background="rgb(249, 250, 251)" w="full" minH="100vh">
+      <Link href="/counters">
+        <Button>Click Me</Button>
+      </Link>
+    </Flex>
+  )
 }
 
 Home.redirectAuthenticatedTo = Routes.CountersPage()
 Home.suppressFirstRenderFlicker = true
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
 
 export default Home
