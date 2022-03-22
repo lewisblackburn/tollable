@@ -7,16 +7,16 @@ import {
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
 } from "blitz"
-import LoginForm from "app/auth/components/LoginForm"
 
 import { ChakraProvider } from "@chakra-ui/react"
 import LoginPage from "app/auth/pages/login"
+import theme from "app/core/styles/theme"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <ErrorBoundary
         FallbackComponent={RootErrorFallback}
         onReset={useQueryErrorResetBoundary().reset}

@@ -11,7 +11,7 @@ const AccountInformation = () => {
   const [logoutMutation] = useMutation(logout)
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
-  const [regenerateSecretMutation] = useMutation(regenerateSecret)
+  const [regenerateSecretMutation, { isLoading }] = useMutation(regenerateSecret)
 
   return (
     <>
@@ -45,6 +45,8 @@ const AccountInformation = () => {
         </InputGroup>
         <Button
           background="gray.200"
+          isLoading={isLoading}
+          loadingText="Loading"
           onClick={() => {
             regenerateSecretMutation({ currentSecret: user?.secret ?? "" }).then(() => refetch())
           }}

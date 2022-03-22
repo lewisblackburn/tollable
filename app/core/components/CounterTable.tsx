@@ -1,23 +1,10 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Table,
-  Td,
-  Th,
-  Tr,
-} from "@chakra-ui/react"
+import { Button, Flex, Table, Td, Th, Tr } from "@chakra-ui/react"
+import { Counter } from "@prisma/client"
 import deleteCounter from "app/counters/mutations/deleteCounter"
 import { Link, Routes, useMutation, useRouter } from "blitz"
-import { useState } from "react"
 
 const CounterTable = ({ counters }) => {
   const router = useRouter()
-  const [show, setShow] = useState(false)
-  const handleClick = () => setShow(!show)
   const [deleteCounterMutation] = useMutation(deleteCounter)
 
   return (
@@ -32,7 +19,7 @@ const CounterTable = ({ counters }) => {
         </Tr>
       </thead>
       <tbody>
-        {counters.map((counter) => (
+        {counters.map((counter: Counter) => (
           <Tr
             key={counter.id}
             display="grid"

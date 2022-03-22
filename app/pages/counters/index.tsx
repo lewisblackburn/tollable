@@ -1,15 +1,14 @@
 import { Suspense } from "react"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
+import { Head, Link, usePaginatedQuery, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getCounters from "app/counters/queries/getCounters"
 import TableHeader from "app/core/components/TableHeader"
 import CounterTable from "app/core/components/CounterTable"
 import TableSkeleton from "app/core/components/TableSkeleton"
-import { Box, Button } from "@chakra-ui/react"
+import { Button, Flex } from "@chakra-ui/react"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 export const CountersList = () => {
-  const router = useRouter()
   const { user } = useCurrentUser()
   const [{ counters }] = usePaginatedQuery(getCounters, {
     where: {
@@ -41,10 +40,12 @@ const CountersPage: BlitzPage = () => {
           </>
         }
       >
-        <CountersList />
-        <Link href={Routes.NewCounterPage()}>
-          <Button background="gray.200">New</Button>
-        </Link>
+        <Flex flexDir="column" gap={10}>
+          <CountersList />
+          <Link href={Routes.NewCounterPage()}>
+            <Button background="gray.200">New</Button>
+          </Link>
+        </Flex>
       </Suspense>
     </>
   )

@@ -3,7 +3,7 @@ import { Link } from "blitz"
 
 const Header = ({}) => {
   return (
-    <Flex position="fixed" w="full" backgroundColor="white" mb={[8, 16]}>
+    <Flex position="fixed" w="full" background="white" mb={[8, 16]}>
       <Flex
         alignItems="center"
         justifyContent="space-between"

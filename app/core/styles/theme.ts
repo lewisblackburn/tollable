@@ -7,6 +7,11 @@ const theme = extendTheme({
     medium: 600,
     bold: 700,
   },
+  colors: {
+    brand: {
+      100: "rgb(249, 250, 251)",
+    },
+  },
 })
 
 export default theme
