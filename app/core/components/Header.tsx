@@ -1,5 +1,5 @@
 import { Avatar, Flex } from "@chakra-ui/react"
-import { Link } from "blitz"
+import { Image, Link } from "blitz"
 
 const Header = ({}) => {
   return (
@@ -17,7 +17,9 @@ const Header = ({}) => {
       >
         <Flex align="center" gap={5}>
           <Link href="/" passHref>
-            Tollable
+            <a>
+              <Image width={24} height={24} src="/tollable.svg" alt="logo" />
+            </a>
           </Link>
           <Link href="/counters" passHref>
             Counters
